@@ -19,6 +19,7 @@ class TicketWalletScreen extends StatelessWidget {
       length: 2,
       child: Scaffold(
         floatingActionButton: FloatingActionButton.extended(
+          tooltip: 'Open ticket scanner',
           onPressed: () => context.push(AppRoutes.scan),
           icon: const Icon(Icons.qr_code_scanner),
           label: const AppText(text: 'Scan demo'),
