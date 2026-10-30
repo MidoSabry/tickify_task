@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tickify_task/core/widgets/shared_text.dart';
 import 'package:tickify_task/features/scan_result/domain/entities/scan_result.dart';
 import 'package:tickify_task/features/scan_result/presentation/widgets/result_header.dart';
 
@@ -47,11 +48,10 @@ class ScanResultContent extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        'Ticket information',
-                        style: theme.textTheme.titleMedium?.copyWith(
-                          fontWeight: FontWeight.w700,
-                        ),
+                      AppText(
+                        text: 'Ticket information',
+                        size: AppTextSize.medium,
+                        fontWeight: FontWeight.w700,
                       ),
                       const SizedBox(height: 18),
                       _InfoRow(
@@ -121,19 +121,13 @@ class _InfoRow extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                label,
-                style: theme.textTheme.bodySmall?.copyWith(
-                  color: theme.colorScheme.onSurfaceVariant,
-                ),
+              AppText(
+                text: label,
+                size: AppTextSize.small,
+                color: theme.colorScheme.onSurfaceVariant,
               ),
               const SizedBox(height: 4),
-              Text(
-                value,
-                style: theme.textTheme.bodyLarge?.copyWith(
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
+              AppText(text: value, fontWeight: FontWeight.w600),
             ],
           ),
         ),
@@ -168,13 +162,14 @@ class _ReasonCard extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  'Why this ticket is invalid',
-                  style: Theme.of(context).textTheme.labelLarge
-                      ?.copyWith(color: color, fontWeight: FontWeight.w700),
+                AppText(
+                  text: 'Why this ticket is invalid',
+                  size: AppTextSize.small,
+                  color: color,
+                  fontWeight: FontWeight.w700,
                 ),
                 const SizedBox(height: 4),
-                Text(reason),
+                AppText(text: reason),
               ],
             ),
           ),

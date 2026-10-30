@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:tickify_task/core/navigation/app_routes.dart';
+import 'package:tickify_task/core/widgets/shared_text.dart';
 
 import '../../../../core/theme/app_colors.dart';
 import '../../domain/entities/ticket.dart';
@@ -47,26 +48,25 @@ class TicketCard extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      ticket.eventName,
+                    AppText(
+                      text: ticket.eventName,
+                      size: AppTextSize.medium,
+                      fontWeight: FontWeight.w700,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
-                      style: Theme.of(context).textTheme.titleMedium
-                          ?.copyWith(fontWeight: FontWeight.w700),
                     ),
                     const SizedBox(height: 6),
-                    Text(
-                      _formatDate(ticket.eventDate),
-                      style: Theme.of(context).textTheme.bodySmall
-                          ?.copyWith(color: colors.onSurfaceVariant),
+                    AppText(
+                      text: _formatDate(ticket.eventDate),
+                      size: AppTextSize.small,
+                      color: colors.onSurfaceVariant,
                     ),
                     const SizedBox(height: 4),
-                    Text(
-                      '${ticket.venue} · ${ticket.ticketType}',
+                    AppText(
+                      text: '${ticket.venue} · ${ticket.ticketType}',
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
-                      style: Theme.of(context).textTheme.bodyMedium
-                          ?.copyWith(color: colors.onSurfaceVariant),
+                      color: colors.onSurfaceVariant,
                     ),
                   ],
                 ),
@@ -81,12 +81,11 @@ class TicketCard extends StatelessWidget {
                   color: statusColor.withValues(alpha: 0.12),
                   borderRadius: BorderRadius.circular(20),
                 ),
-                child: Text(
-                  _statusLabel(ticket.status),
-                  style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                    color: statusColor,
-                    fontWeight: FontWeight.w700,
-                  ),
+                child: AppText(
+                  text: _statusLabel(ticket.status),
+                  size: AppTextSize.small,
+                  color: statusColor,
+                  fontWeight: FontWeight.w700,
                 ),
               ),
             ],

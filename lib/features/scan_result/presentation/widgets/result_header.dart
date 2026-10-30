@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tickify_task/core/widgets/shared_text.dart';
 
 import '../../../../core/theme/app_colors.dart';
 import '../../domain/entities/scan_result.dart';
@@ -47,8 +48,6 @@ class _ResultHeaderState extends State<ResultHeader>
   @override
   Widget build(BuildContext context) {
     final color = _colorFor(widget.type);
-    final theme = Theme.of(context);
-
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 28),
@@ -74,21 +73,18 @@ class _ResultHeaderState extends State<ResultHeader>
             ),
           ),
           const SizedBox(height: 16),
-          Text(
-            _titleFor(widget.type),
+          AppText(
+            text: _titleFor(widget.type),
+            size: AppTextSize.headline,
+            fontWeight: FontWeight.w800,
+            color: color,
             textAlign: TextAlign.center,
-            style: theme.textTheme.headlineSmall?.copyWith(
-              color: color,
-              fontWeight: FontWeight.w800,
-            ),
           ),
           const SizedBox(height: 8),
-          Text(
-            _messageFor(widget.type),
+          AppText(
+            text: _messageFor(widget.type),
+            color: Theme.of(context).colorScheme.onSurfaceVariant,
             textAlign: TextAlign.center,
-            style: theme.textTheme.bodyMedium?.copyWith(
-              color: theme.colorScheme.onSurfaceVariant,
-            ),
           ),
         ],
       ),

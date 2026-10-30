@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:tickify_task/core/navigation/app_routes.dart';
 import 'package:tickify_task/core/theme/app_theme_controller.dart';
+import 'package:tickify_task/core/widgets/shared_text.dart';
 
 import '../../../../core/base/base_state.dart';
 import '../../domain/entities/ticket.dart';
@@ -20,10 +21,10 @@ class TicketWalletScreen extends StatelessWidget {
         floatingActionButton: FloatingActionButton.extended(
           onPressed: () => context.push(AppRoutes.scan),
           icon: const Icon(Icons.qr_code_scanner),
-          label: const Text('Scan demo'),
+          label: const AppText(text: 'Scan demo'),
         ),
         appBar: AppBar(
-          title: const Text('My Tickets'),
+          title: const AppText(text: 'My Tickets', size: AppTextSize.title),
           actions: [
             ValueListenableBuilder<ThemeMode>(
               valueListenable: AppThemeController.themeMode,
@@ -81,7 +82,12 @@ class TicketWalletScreen extends StatelessWidget {
             }
 
             if (state is ErrorState) {
-              return Center(child: Text('Something went wrong: ${state.data}'));
+              return Center(
+                child: AppText(
+                  text: 'Something went wrong: ${state.data}',
+                  textAlign: TextAlign.center,
+                ),
+              );
             }
 
             if (state is LoadedState<List<Ticket>> && state.data != null) {
@@ -128,7 +134,7 @@ class _TicketsList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (tickets.isEmpty) {
-      return Center(child: Text(emptyMessage));
+      return Center(child: AppText(text: emptyMessage));
     }
 
     return ListView.builder(

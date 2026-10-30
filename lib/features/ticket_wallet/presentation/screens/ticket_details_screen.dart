@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:qr_flutter/qr_flutter.dart';
-
-import '../../../../core/theme/app_colors.dart';
+import 'package:tickify_task/core/widgets/shared_text.dart';
 import '../../domain/entities/ticket.dart';
 
 class TicketDetailsScreen extends StatelessWidget {
@@ -11,14 +10,15 @@ class TicketDetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
     final date = ticket.eventDate;
     final formattedDate =
         '${date.day.toString().padLeft(2, '0')}/'
         '${date.month.toString().padLeft(2, '0')}/${date.year}';
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Ticket Details')),
+      appBar: AppBar(
+        title: const AppText(text: 'Ticket Details', size: AppTextSize.title),
+      ),
       body: Center(
         child: ConstrainedBox(
           constraints: const BoxConstraints(maxWidth: 560),
@@ -31,11 +31,10 @@ class TicketDetailsScreen extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        ticket.eventName,
-                        style: theme.textTheme.headlineSmall?.copyWith(
-                          fontWeight: FontWeight.bold,
-                        ),
+                      AppText(
+                        text: ticket.eventName,
+                        size: AppTextSize.headline,
+                        fontWeight: FontWeight.bold,
                       ),
                       const SizedBox(height: 20),
                       _DetailRow(label: 'Date', value: formattedDate),
@@ -58,10 +57,10 @@ class TicketDetailsScreen extends StatelessWidget {
                   padding: const EdgeInsets.all(24),
                   child: Column(
                     children: [
-                      Text(
-                        'Show this QR code at the entrance',
+                      AppText(
+                        text: 'Show this QR code at the entrance',
+                        size: AppTextSize.medium,
                         textAlign: TextAlign.center,
-                        style: theme.textTheme.titleMedium,
                       ),
                       const SizedBox(height: 16),
                       QrImageView(
@@ -71,12 +70,9 @@ class TicketDetailsScreen extends StatelessWidget {
                         semanticsLabel: 'QR code for ticket ${ticket.id}',
                       ),
                       const SizedBox(height: 12),
-                      Text(
-                        ticket.id,
-                        style: theme.textTheme.bodyMedium?.copyWith(
-                          color: AppColors.textSecondary,
-                          letterSpacing: 1.2,
-                        ),
+                      AppText(
+                        text: ticket.id,
+                        color: Theme.of(context).colorScheme.onSurfaceVariant,
                       ),
                     ],
                   ),
@@ -105,18 +101,13 @@ class _DetailRow extends StatelessWidget {
         children: [
           SizedBox(
             width: 130,
-            child: Text(
-              label,
-              style: Theme.of(context).textTheme.bodyMedium
-                  ?.copyWith(color: AppColors.textSecondary),
+            child: AppText(
+              text: label,
+              color: Theme.of(context).colorScheme.onSurfaceVariant,
             ),
           ),
           Expanded(
-            child: Text(
-              value,
-              style: Theme.of(context).textTheme.bodyMedium
-                  ?.copyWith(fontWeight: FontWeight.w600),
-            ),
+            child: AppText(text: value, fontWeight: FontWeight.w600),
           ),
         ],
       ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tickify_task/core/widgets/shared_text.dart';
 import 'package:tickify_task/features/scan_result/presentation/widgets/scan_result_content.dart';
 
 import '../../../../core/base/base_state.dart';
@@ -12,7 +13,9 @@ class ScanResultScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Scan Result')),
+      appBar: AppBar(
+        title: const AppText(text: 'Scan Result', size: AppTextSize.title),
+      ),
       body: BlocBuilder<ScanResultCubit, BaseState>(
         builder: (context, state) {
           if (state is LoadingState) {
@@ -64,7 +67,6 @@ class ScanResultScreen extends StatelessWidget {
   }
 }
 
-
 class _MessageState extends StatelessWidget {
   const _MessageState({
     required this.icon,
@@ -88,19 +90,16 @@ class _MessageState extends StatelessWidget {
           children: [
             Icon(icon, size: 56, color: theme.colorScheme.onSurfaceVariant),
             const SizedBox(height: 16),
-            Text(
-              title,
-              style: theme.textTheme.titleLarge?.copyWith(
-                fontWeight: FontWeight.bold,
-              ),
+            AppText(
+              text: title,
+              size: AppTextSize.title,
+              fontWeight: FontWeight.bold,
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 8),
-            Text(
-              message,
-              style: theme.textTheme.bodyMedium?.copyWith(
-                color: theme.colorScheme.onSurfaceVariant,
-              ),
+            AppText(
+              text: message,
+              color: Theme.of(context).colorScheme.onSurfaceVariant,
               textAlign: TextAlign.center,
             ),
           ],
@@ -109,4 +108,3 @@ class _MessageState extends StatelessWidget {
     );
   }
 }
-

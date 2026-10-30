@@ -5,6 +5,7 @@ import 'package:tickify_task/core/base/base_state.dart';
 import 'package:tickify_task/core/navigation/app_routes.dart';
 import 'package:tickify_task/core/theme/app_colors.dart';
 import 'package:tickify_task/core/widgets/shared_button.dart';
+import 'package:tickify_task/core/widgets/shared_text.dart';
 import 'package:tickify_task/features/scan_result/domain/entities/scan_result.dart';
 import 'package:tickify_task/features/scan_result/presentation/widgets/scanner_corners.dart';
 
@@ -38,7 +39,7 @@ class _ScanScreenState extends State<ScanScreen> {
     return Scaffold(
       backgroundColor: backgroundColor,
       appBar: AppBar(
-        title: const Text('Scan ticket'),
+        title: const AppText(text: 'Scan ticket', size: AppTextSize.title),
         backgroundColor: backgroundColor,
         foregroundColor: Theme.of(context).colorScheme.onSurface,
         elevation: 0,
@@ -52,16 +53,15 @@ class _ScanScreenState extends State<ScanScreen> {
                 padding: const EdgeInsets.all(20),
                 child: Column(
                   children: [
-                    Text(
-                      'Scan a ticket QR code',
-                      style: Theme.of(context).textTheme.titleLarge
-                          ?.copyWith(fontWeight: FontWeight.bold),
+                    AppText(
+                      text: 'Scan a ticket QR code',
+                      size: AppTextSize.title,
+                      fontWeight: FontWeight.bold,
                       textAlign: TextAlign.center,
                     ),
                     const SizedBox(height: 8),
-                    Text(
-                      'Place the QR code inside the frame',
-                      style: Theme.of(context).textTheme.bodyMedium,
+                    AppText(
+                      text: 'Place the QR code inside the frame',
                       textAlign: TextAlign.center,
                     ),
                     const SizedBox(height: 24),

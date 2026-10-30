@@ -19,14 +19,6 @@ class ButtonLoadingState extends BaseState {
   const ButtonLoadingState();
 }
 
-class FormEnabledState extends BaseState {
-  const FormEnabledState();
-}
-
-class FormDisabledState extends BaseState {
-  const FormDisabledState();
-}
-
 class InitialState extends BaseState {
   const InitialState();
 }
